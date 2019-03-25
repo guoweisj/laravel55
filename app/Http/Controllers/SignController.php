@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class SignController extends Controller
 {
     //
+   
     public function  delSign(Request $request)
     {
 //        $request::all();

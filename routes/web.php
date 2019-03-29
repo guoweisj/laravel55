@@ -14,7 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::prefix("study")->group(function(){
+    Route::get('lottery/index','Study\LotterController@lottery');//抽奖页面
+    Route::any('lottery/do','Study\LotterController@doLottery');
+    Route::get('guess/add','Study\GuessController@add');//竞猜添加页面
+    Route::post('guess/doAdd','Study\GuessController@doAdd');//竞猜添加页面
+    Route::get('guess/list','Study\GuessController@lists');//竞猜列表页面
+    Route::get('guess/guess','Study\GuessController@guess');//竞猜添加页面doGuess
+    Route::get('guess/result','Study\GuessController@checkResult');//竞猜添加页面doGuess
+    Route::post('guess/doGuess','Study\GuessController@doGuess');//竞猜添加页面
+});
 //登录页面
  Route::any("admin/login","Admin\LoginController@index");
  Route::any("admin/logout","Admin\LoginController@logout");

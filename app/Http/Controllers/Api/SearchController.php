@@ -20,7 +20,8 @@ class SearchController extends Controller
     		'data'=>[
     		'list'=>$list,
     		'total_num'=>$totalNum 
-    	];
+    	]
+    ];
 
     	return json_encode($return);
     }

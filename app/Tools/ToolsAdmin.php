@@ -87,5 +87,24 @@ class ToolsAdmin
 		$urls = \App\Model\Permissions::getUrlsByIds($pids);//根据权限节点id获取所有的权限的url地址
 		return $urls;
 	}
+    //创建无限级分类树形结构
+	public static function buildTreeString($data,$fid,$level,$fkey="fid")
+    {
+        if(empty($data)){
+            return [];
+        }
+        static $tree = [];
+        foreach($data as $key => $vaule){
+            //判断当前的父类id是否等于递归调用传过来的id
+            if($vaule[$fkey]==$fid){
+                $vaule['level']=$level;
+                $tree[]=$vaule;
+                unset($data[$key]);
+                self::buildTreeString($data,$vaule['id'],$level+1,$fkey);
+            }
+
+        }
+        return $tree;
+    }
 }
 ?>

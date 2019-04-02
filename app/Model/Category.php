@@ -6,28 +6,39 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    //分类表
-    protected $table = "category";
+    //
+    protected $table="jy_category";
+    public $timestamps=false;
     //获取分类列表
-     public function getLists()
-     {
-     	return self::paginate(5);
-     } 
-     //分类添加
-     public function addRecord($data)
+    public static function getCategoryList()
     {
-    	return self::insert($data);
+        $list=self::get()->toArray();
+        return $list;
     }
-    //分类删除
-     public function delRecord($id)
+    //添加分类的数据
+    public static function doAdd($data)
     {
-    	return self::where('id',$id)->delete();
+            return self::insert($data);
+    }
+    public static function doUpdate($data,$id)
+    {
+        return self::where('id',$id)->update($data);
+    }
+    //通过fid查询子级分类
+    public static function getCategoryByFid($fid=0)
+    {
+        $list = self::where('f_id',$fid)->get()->toArray();
+        return $list;
+    }
+    //执行删除
+    public static function del($id)
+    {
+        return self::where('id',$id)->delete();
+    }
+    //获取分类的信息
+    public static function getCateInfo($id)
+    {
+        return self::where('id',$id)->first();
     }
 
-    //获取分类
-    public function getCategory()
-    {
-        return self::get()->toArray();
-        
-    }
 }

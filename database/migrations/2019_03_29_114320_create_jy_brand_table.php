@@ -15,7 +15,9 @@ class CreateJyBrandTable extends Migration
     {
         Schema::create('jy_brand', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->string('brand_name',30)->default('')->comment('商品名字');
+            $table->enum('status',[1,2])->default('1')->comment('商品状态 1 可用 2 禁用');
+
         });
     }
 

@@ -191,6 +191,55 @@ Route::prefix("study")->group(function(){
      //文章分类的删除
      Route::get('article/del/{id}','Admin\ArticleController@del')->name('admin.article.del');
      /*#############################[文章相关]#############################*/
+     /*#############################[文章相关]#############################*/
+
+     //文章列表
+     Route::get('article/list','Admin\ArticleController@lists')->name('admin.article.list');
+     //文章添加
+     Route::get('article/add','Admin\ArticleController@add')->name('admin.article.add');
+     //文章执行添加
+     Route::post('article/store','Admin\ArticleController@store')->name('admin.article.store');
+
+     //文章分类编辑
+     Route::get('article/edit/{id}','Admin\ArticleController@edit')->name('admin.article.edit');
+     //文章分类执行编辑
+     Route::post('article/save','Admin\ArticleController@doEdit')->name('admin.article.save');
+
+     //文章分类的删除
+     Route::get('article/del/{id}','Admin\ArticleController@del')->name('admin.article.del');
+     /*#############################[文章相关]#############################*/
+     /*#############################[广告位相关]#############################*/
+     //广告位列表
+     Route::get('position/list','Admin\AdPositionController@lists')->name('admin.position.list');
+     //广告位添加页面
+     Route::get('position/add','Admin\AdPositionController@add')->name('admin.position.add');
+     //广告位添加页面
+     Route::post('position/store','Admin\AdPositionController@store')->name('admin.position.store');
+
+     //广告位编辑
+     Route::get('position/edit/{id}','Admin\AdPositionController@edit')->name('admin.position.edit');
+     //广告位执行编辑
+     Route::post('position/save','Admin\AdPositionController@doEdit')->name('admin.position.save');
+
+     //广告位删除
+     Route::get('position/del/{id}','Admin\AdPositionController@del')->name('admin.position.del');
+     /*#############################[广告位相关]#############################*/
+     /*#############################[广告相关]#############################*/
+     //广告位列表
+     Route::get('ad/list','Admin\AdController@lists')->name('admin.ad.list');
+     //广告位添加页面
+     Route::get('ad/add','Admin\AdController@add')->name('admin.ad.add');
+     //广告添加页面
+     Route::post('ad/store','Admin\AdController@store')->name('admin.ad.store');
+
+     //广告编辑
+     Route::get('ad/edit/{id}','Admin\AdController@edit')->name('admin.ad.edit');
+     //广告执行编辑
+     Route::post('ad/save','Admin\AdController@doEdit')->name('admin.ad.save');
+
+     //广告位删除
+     Route::get('ad/del/{id}','Admin\AdController@del')->name('admin.ad.del');
+     /*#############################[广告相关]#############################*/
 
  });
 

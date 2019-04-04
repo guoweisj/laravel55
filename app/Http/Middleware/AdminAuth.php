@@ -27,6 +27,7 @@ class AdminAuth
         //完成试图共享
         View::share('username',$session->get('user.username'));
         View::share('user_pic',$session->get('user.image_url'));
+        View::share('user_id',$session->get('user.user_id'));
         //左侧菜单视图共享
         $user = $session->get('user');
     

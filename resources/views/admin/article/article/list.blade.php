@@ -179,7 +179,7 @@
                     </tbody>
                 </table>
 
-                {{$list->links()}}
+                {{--{{$list->links()}}--}}
             </div><!-- table-responsive -->
         </div>
     </div>

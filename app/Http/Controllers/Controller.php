@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    const 
+        PAGE_SIZE = 1,
+        END       = TRUE;
 
     //删除_token下划线token值
     public function delToken(array $params)
@@ -41,15 +44,20 @@ class Controller extends BaseController
     {
         return $object->insertGetId($params);
     }
+    //多条数据添加
+    public function storeDataMany($object, $params)
+    {
+        return $object->insert($params);
+    }
 
     //获取数据的公共方法操作
-    public function getDataInfo($object, $id, $key="id")
+    public function getDataInfo($object, $id, $key="id",$fields="*")
     {
         if(empty($id)){
             return false;
         }
 
-        $info = $object->where($key, $id)->first();
+        $info = $object->select($fields)->where($key, $id)->first();
 
         return $info;
     }

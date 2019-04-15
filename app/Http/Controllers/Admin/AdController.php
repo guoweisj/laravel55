@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Model\AdPosition;
 use App\Model\Ad;
 use App\Tools\ToolsAdmin;
-use think\response\Redirect;
+use App\Tools\ToolsOss;
+use Excel;
 
 class AdController extends Controller
 {
@@ -22,7 +23,17 @@ class AdController extends Controller
 //广告列表页面
     public function lists()
     {
+
+
         $assign['list'] = $this->ad->getAdList();
+        $oss = new ToolsOss();
+//        dd($oss);
+        //处理图片对象
+        foreach ($assign['list'] as $key => $value) {
+            $value['image_url'] = $oss->getUrl($value['image_url'], true);
+            $assign['list'][$key] = $value;
+        }
+
         return view('admin.ad.list',$assign);
     }
     //广告添加页面
@@ -39,6 +50,10 @@ class AdController extends Controller
             return redirect()->back()->with('msg','请先上传图片');
         }
 
+        $oss = new ToolsOss();
+        $filePath = $oss->putFile($params['image_url']);
+        $path = $oss->getUrl($filePath);
+       
         $params['image_url'] = ToolsAdmin::uploadFile($params['image_url']);
 
         $params = $this->delToken($params);

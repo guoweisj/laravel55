@@ -300,6 +300,24 @@ Route::prefix("study")->group(function(){
 
      // 商品相册删除
      Route::get('goods/gallery/del/{id}','Admin\GoodsGalleryController@del')->name('admin.goods.gallery.del');
+     //商品sku和属性页面
+     Route::get('goods/sku/edit/{goods_id}','Admin\GoodsSkuController@edit')->name('admin.goods.sku.edit');
+
+     //商品添加操作
+     Route::post('goods/sku/save','Admin\GoodsSkuController@doEdit')->name('admin.goods.sku.save');
+     //商品sku属性列表接口
+     Route::any('goods/sku/attr/{goods_id}','Admin\GoodsSkuController@getSkuAttr')->name('admin.goods.sku.attr');
+
+     //商品属性值
+     Route::any('goods/attr/value/{id}','Admin\GoodsSkuController@getAttrValues')->name('admin.goods.attr.value');
+
+     Route::any('goods/sku/list/bind/{goods_id}','Admin\GoodsSkuController@getSkuList')->name('admin.goods.sku.list.bind');
+
+
+     //商品评论列表
+     Route::get('goods/comment/list','Admin\CommentController@list')->name('admin.goods.comment.list');
+
+     Route::get('goods/comment/del/{id}','Admin\CommentController@del')->name('admin.goods.comment.del'); 
 
      /*#############################[商品相关]#############################*/
  });

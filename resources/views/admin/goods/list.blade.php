@@ -65,6 +65,7 @@
                         </td>
                         <td>
                             <a class="btn btn-sm btn-success" :href="'/admin/goods/edit/'+goods.id">编辑</a>
+                            <a class="btn btn-sm btn-success" :href="'/admin/goods/sku/edit/'+goods.id">属性</a>
                             <button class="btn btn-sm btn-danger" @click="goodsDel(goods.id)">删除</button>
                         </td>
                     </tr>
@@ -101,7 +102,7 @@
 
                     $.ajax({
                         url: "/admin/goods/data/list",
-                        type: "get",
+                        type: "post",
                         data: {_token: $("input[name=_token]").val(),page: that.current_page},
                         dataType:"json",
                         success: function(res){

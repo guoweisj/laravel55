@@ -39,11 +39,17 @@ class ToolsAdmin
 	 * @param  [type] $file [description]
 	 * @return [type]       [description]
 	 */
-	public static function uploadFile($files)
+	public static function uploadFile($files,$isOss=true)
 	{
 		if(empty($files)){
 			return "";
 		}
+		if($isOss){
+            //oss文件上传
+            $oss = new ToolsOss();
+            $url =  $oss->putFile($files);
+            return $url;
+        }
 
 		//文件上传的目录
 		$basePath = 'uploads/'.date('Y-m-d',time());

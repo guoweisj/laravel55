@@ -50,10 +50,10 @@ class AdController extends Controller
             return redirect()->back()->with('msg','请先上传图片');
         }
 
-        $oss = new ToolsOss();
-        $filePath = $oss->putFile($params['image_url']);
-        $path = $oss->getUrl($filePath);
-       
+//        $oss = new ToolsOss();
+//        $filePath = $oss->putFile($params['image_url']);
+//        $path = $oss->getUrl($filePath);
+//        dd($path);
         $params['image_url'] = ToolsAdmin::uploadFile($params['image_url']);
 
         $params = $this->delToken($params);

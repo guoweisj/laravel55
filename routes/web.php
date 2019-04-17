@@ -294,6 +294,13 @@ Route::prefix("study")->group(function(){
 
      // 商品删除
      Route::get('goods/del/{id}','Admin\GoodsController@del')->name('admin.goods.del');
+     //商品导入的页面
+     Route::get('goods/import','Admin\GoodsController@import')->name('admin.goods.import');
+     Route::post('goods/doImport','Admin\GoodsController@doImport')->name('admin.goods.doImport');
+
+     //商品导出
+     Route::any('goods/export','Admin\GoodsController@export')->name('admin.goods.export');
+
 
      //商品相册的数据
      Route::post('goods/gallery/list/{goods_id}','Admin\GoodsGalleryController@getGallery')->name('admin.goods.gallery.list');
@@ -352,5 +359,6 @@ Route::prefix("study")->group(function(){
      //详情
      Route::get('member/detail/{id}','Admin\MemberController@detail')->name('admin.member.detail');
      /*#############################[会员管理]#############################*/
+
  });
 

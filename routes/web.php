@@ -331,11 +331,11 @@ Route::prefix("study")->group(function(){
      //执行添加
      Route::post('payment/store','Admin\PaymentController@store')->name('admin.payment.store');
 
-     //添加页面
+     //修改页面
      Route::get('payment/edit/{id}','Admin\PaymentController@edit')->name('admin.payment.edit');
      //执行添加
      Route::post('payment/save','Admin\PaymentController@doEdit')->name('admin.payment.save');
-
+    //删除
      Route::get('payment/del/{id}','Admin\PaymentController@del')->name('admin.payment.del');
 
 
@@ -346,5 +346,11 @@ Route::prefix("study")->group(function(){
      Route::post('shipping/store','Admin\ShippingController@store')->name('admin.shipping.store');
      Route::get('shipping/del/{id}','Admin\ShippingController@del')->name('admin.shipping.del');
      /*#############################[系统管理]#############################*/
+     /*#############################[会员管理]#############################*/
+     //列表
+     Route::get('member/list','Admin\MemberController@list')->name('admin.member.list');
+     //详情
+     Route::get('member/detail/{id}','Admin\MemberController@detail')->name('admin.member.detail');
+     /*#############################[会员管理]#############################*/
  });
 

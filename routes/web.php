@@ -352,6 +352,24 @@ Route::prefix("study")->group(function(){
      //执行添加
      Route::post('shipping/store','Admin\ShippingController@store')->name('admin.shipping.store');
      Route::get('shipping/del/{id}','Admin\ShippingController@del')->name('admin.shipping.del');
+
+     //活动列表
+     Route::get('activity/list','Admin\ActivityController@list')->name('admin.activity.list');
+     Route::get('activity/add','Admin\ActivityController@add')->name('admin.activity.add');
+     Route::post('activity/store','Admin\ActivityController@store')->name('admin.activity.store');
+     Route::get('activity/edit/{id}','Admin\ActivityController@edit')->name('admin.activity.edit');
+     Route::post('activity/save','Admin\ActivityController@save')->name('admin.activity.save');
+
+     Route::get('activity/del/{id}','Admin\ActivityController@del')->name('admin.activity.del');
+
+
+     //地区管理
+     Route::get('region/list/{fid?}','Admin\RegionController@list')->name('admin.region.list');
+
+     Route::get("region/add", 'Admin\RegionController@add')->name('admin.region.add');
+     Route::post("region/store", 'Admin\RegionController@store')->name('admin.region.store');
+
+     Route::get('region/del/{id}','Admin\RegionController@del')->name('admin.region.del');
      /*#############################[系统管理]#############################*/
      /*#############################[会员管理]#############################*/
      //列表
@@ -359,6 +377,43 @@ Route::prefix("study")->group(function(){
      //详情
      Route::get('member/detail/{id}','Admin\MemberController@detail')->name('admin.member.detail');
      /*#############################[会员管理]#############################*/
+     /*#############################[红包管理]#############################*/
+     //红包列表
+     Route::get('bonus/list','Admin\BonusController@list')->name('admin.bonus.list');
+     Route::get('bonus/add','Admin\BonusController@addBonus')->name('admin.bonus.add');
+     Route::post('bonus/store','Admin\BonusController@doAddBonus')->name('admin.bonus.store');
+     //发送红包
+     Route::get('bonus/send/{bonus_id}','Admin\BonusController@sendBonus')->name('admin.bonus.send');
+     Route::post('bonus/doSend','Admin\BonusController@doSendBonus')->name('admin.bonus.doSend');
+
+     Route::get('user/bonus/list','Admin\BonusController@userBonusList')->name('admin.user.bonus.list');
+     /*#############################[红包管理]#############################*/
+
+     /*#############################[批次管理]#############################*/
+     //列表
+     Route::get('batch/list','Admin\BatchController@list')->name('admin.batch.list');
+     Route::get('batch/add','Admin\BatchController@add')->name('admin.batch.add');
+     Route::post('batch/store','Admin\BatchController@store')->name('admin.batch.store');
+     //执行批次
+     Route::get('batch/do/{id}','Admin\BatchController@doBatch')->name('admin.batch.do');
+
+     /*#############################[批次管理]#############################*/
+
+     /*#############################[订单管理]#############################*/
+
+     //订单列表页面
+     Route::get('order/list', 'Admin\OrderController@list')->name('admin.order.list');
+
+     //订单详情页面
+     Route::get('order/detail/{id}','Admin\OrderController@detail')->name('admin.order.detail');
+     //导出
+     Route::get('order/export','Admin\OrderController@export')->name('admin.order.export');
+
+     //导入的功能
+     Route::get('order/import','Admin\OrderController@import')->name('admin.order.import');
+     Route::post('order/doImport','Admin\OrderController@doImport')->name('admin.order.doImport');
+
+     /*#############################[订单管理]#############################*/
 
  });
 

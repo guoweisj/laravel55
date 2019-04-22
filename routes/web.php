@@ -30,6 +30,13 @@ Route::prefix("study")->group(function(){
  //执行登录
  Route::any("admin/doLogin","Admin\LoginController@doLogin");
  Route::any('study/delSign',"Study\IndexController@delSign");
+//忘记密码的页面
+Route::get('admin/forget/password','Admin\LoginController@forget');
+Route::post('admin/forget/sendEmail','Admin\LoginController@sendEmail');
+
+//重新设置密码
+Route::get('admin/forget/reset','Admin\LoginController@reset');
+Route::post('admin/reset/password/save','Admin\LoginController@save');
  // Route::any('study/getList',"Study\IndexController@getList");
  // Route::any('study/Sign',"Study\IndexController@Sign");
  Route::get('403',function(){
@@ -38,7 +45,7 @@ Route::prefix("study")->group(function(){
  //管理后台RBAC功能的路由组
  Route::middleware(['permission_auth','admin_auth'])->prefix('admin')->group(function(){
  	//后台登录首页
- 		Route::any("home","Admin\HomeController@home")->name('admin.home');
+ 		Route::any("home","Admin\HomeController@home")->name('admin.home.home');
  		/*###########################[权限相关]#####################*/
  		//权限列表
  		Route::any("/permission/list",'Admin\permissionController@list')->name('admin.permission.list');
@@ -67,6 +74,10 @@ Route::prefix("study")->group(function(){
  		Route::get('/user/edit/{id}','Admin\AdminUsersController@edit')->name('admin.user.edit');
  		//用户执行编辑页面
  		Route::post('/user/doEdit','Admin\AdminUsersController@doEdit')->name('admin.user.doEdit');
+     //修改密码的页面
+     Route::get('/user/password','Admin\AdminUsersController@password')->name('admin.user.password');
+     //保存修改密码
+     Route::post('/user/password/save','Admin\AdminUsersController@updatePwd')->name('admin.user.password.save');
  		/*###########################[用户相关]#####################*/
 
  		/*###########################[角色相关]#####################*/

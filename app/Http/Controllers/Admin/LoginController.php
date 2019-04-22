@@ -80,12 +80,16 @@ class LoginController extends Controller
 
 
     }
-
+//用户退出
     public function logout(Request $request)
     {
         //session 删除
         $request->session()->forget('user');
         return redirect('/admin/login');
     }
-
+    //忘记密码的页面
+    public function forget()
+    {
+        return view('admin.forget.forget');
+    }
 }
